@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_img"
+    android:clickable="false"
+    tools:context=".Splash1Activity">
+
+    <TextView
+        android:id="@+id/search_delicious_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
+        android:fontFamily="@font/montserrat_bold"
+        android:foregroundTint="@color/colorAccent"
+        android:hapticFeedbackEnabled="true"
+        android:text="@string/search_delicious_food"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:transitionName="splashText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.172" />
+
+    <ImageView
+        android:id="@+id/search_splash_img"
+        android:layout_width="330dp"
+        android:layout_height="279dp"
+        android:clickable="false"
+        android:contentDescription="@string/search_splash_image"
+        android:onClick="next1"
+        android:transitionName="splashImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_delicious_food"
+        app:layout_constraintVertical_bias="0.158"
+        app:srcCompat="@drawable/search_image_01" />
+
+    <ImageView
+        android:id="@+id/pagination1"
+        android:layout_width="49dp"
+        android:layout_height="17dp"
+        android:contentDescription="@string/pagination_1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splash1_text"
+        app:layout_constraintVertical_bias="0.973"
+        app:srcCompat="@drawable/pagination" />
+
+    <ImageButton
+        android:id="@+id/bt_next1"
+        android:layout_width="46dp"
+        android:layout_height="22dp"
+        android:background="@drawable/next"
+        android:contentDescription="@string/next_button"
+        android:onClick="next1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toEndOf="@+id/pagination1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.971" />
+
+    <TextView
+        android:id="@+id/splash1_text"
+        android:layout_width="302dp"
+        android:layout_height="143dp"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/search_and_order_delicious_food_and_enjoy_with_your_friends_and_family"
+        android:textAlignment="center"
+        android:textColor="#3D3E3E"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_splash_img"
+        app:layout_constraintVertical_bias="0.283" />
+</androidx.constraintlayout.widget.ConstraintLayout>

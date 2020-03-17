@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Food Lovers</string>
+    <string name="sign_in">Sign In</string>
+    <string name="forgot_password">Forgot Password...?</string>
+    <string name="didn_t_have_an_account">Didn\'t have an account ?</string>
+    <string name="or">or</string>
+    <string name="connect_using">connect using</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="google_logo">Google Logo</string>
+    <string name="logo">Logo</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="username">Username</string>
+    <string name="mobile_no">Mobile No.</string>
+    <string name="easy_payment_options">Easy Payment Options</string>
+    <string name="easy_payment_options_like_cash_card_and_online_payment">Easy payment options like cash, card and online payment.</string>
+    <string name="get_started">Get Started</string>
+    <string name="wallet_splash_image">Wallet Splash Image</string>
+    <string name="search_delicious_food">Search Delicious Food</string>
+    <string name="search_and_order_delicious_food_and_enjoy_with_your_friends_and_family">Search and Order delicious food and enjoy with your friends and family.</string>
+    <string name="search_splash_image">Search Splash Image</string>
+    <string name="pagination_1">Pagination 1</string>
+    <string name="next_button">next button</string>
+    <string name="fastest_delivery">Fastest Delivery</string>
+    <string name="get_it_fast_with_your_food_lovers_account_order_online_from_top_food_restaurants_in_your_locality">Get it fast with your Food Lovers account. Order online from top Food restaurants in Your locality.</string>
+    <string name="delivery_splash_image">Delivery Splash Image</string>
+    <string name="pagination_2">Pagination 2</string>
+    <string name="title_activity_main_home">MainHomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
