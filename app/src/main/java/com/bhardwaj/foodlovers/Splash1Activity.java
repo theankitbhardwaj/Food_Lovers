@@ -12,12 +12,16 @@ import android.widget.ImageView;
 
 public class Splash1Activity extends AppCompatActivity {
     ImageView splashImg;
-
+    SharedPreferenceConfig preferenceConfig;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash1);
         splashImg = findViewById(R.id.search_splash_img);
+        if (preferenceConfig.readLoginStatus()) {
+            startActivity(new Intent(this, MainHomeActivity.class));
+        }
     }
 
     public void onBackPressed() {

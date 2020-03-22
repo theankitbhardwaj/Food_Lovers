@@ -2,6 +2,7 @@ package com.bhardwaj.foodlovers;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -12,6 +13,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "user_db";
     private static final int DB_VER = 1;
     private static final String TABLE_NAME = "user";
+    private static final String ID = "id";
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String EMAIL = "email";
@@ -24,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("Create table user (email TEXT, password TEXT, username TEXT, mob TEXT);");
+        sqLiteDatabase.execSQL("Create table user (id INTEGER PRIMARY  KEY AUTOINCREMENT,email TEXT, password TEXT, username TEXT, mob TEXT);");
         Log.d("Database Operations", "Table Created.");
     }
 
@@ -42,6 +44,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(PASSWORD, password);
 
         database.insert(TABLE_NAME, null, contentValues);
+        database.close();
         Log.d("Database Operations", "One user registered...");
+    }
+
+    public boolean checkUser(String email, String password) {
+        String[] cols = {ID};
+        SQLiteDatabase db = getReadableDatabase();
+        String selection = EMAIL + "=?" + " and " + PASSWORD + "=?";
+        String selectionArgs[] = {email, password};
+        Cursor cursor = db.query(TABLE_NAME, cols, selection, selectionArgs, null, null, null);
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+        if (count > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

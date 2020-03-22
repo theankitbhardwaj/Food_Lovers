@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 public class SignInActivity extends AppCompatActivity {
     Button bt_signIn;
+    SharedPreferenceConfig preferenceConfig;
+    DatabaseHelper db;
     EditText email, password;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z0-9]+\\.+[a-z]+";
     private TextWatcher signInTextWatcher = new TextWatcher() {
@@ -43,6 +45,8 @@ public class SignInActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
+        db = new DatabaseHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         bt_signIn = findViewById(R.id.bt_signup_signup);
@@ -54,11 +58,14 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void signIn(View view) {
-        if (email.getText().toString().equals("admin@admin.com") && password.getText().toString().equals("admin")) {
+        if (db.checkUser(email.getText().toString().trim(), password.getText().toString().trim())) {
             Intent intent = new Intent(this, MainHomeActivity.class);
             startActivity(intent);
+            preferenceConfig.writeLoginStatus(true);
+            view.setEnabled(false);
+        } else {
+            Toast.makeText(this, "User not found", Toast.LENGTH_SHORT);
         }
-        view.setEnabled(false);
     }
 
     public void signUp(View view) {
