@@ -64,7 +64,9 @@ public class SignInActivity extends AppCompatActivity {
             preferenceConfig.writeLoginStatus(true);
             view.setEnabled(false);
         } else {
-            Toast.makeText(this, "User not found", Toast.LENGTH_SHORT);
+            view.setEnabled(false);
+            Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show();
+            view.setEnabled(true);
         }
     }
 
