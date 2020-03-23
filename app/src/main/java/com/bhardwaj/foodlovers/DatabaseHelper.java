@@ -9,6 +9,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "user_db";
     private static final int DB_VER = 1;
@@ -49,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean checkUser(String email, String password) {
-        String[] cols = {ID};
+        String[] cols = {ID, USERNAME, MOB};
         SQLiteDatabase db = getReadableDatabase();
         String selection = EMAIL + "=?" + " and " + PASSWORD + "=?";
         String selectionArgs[] = {email, password};
@@ -62,5 +65,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return false;
         }
+    }
+
+    public boolean checkUserExists(String email, String mob) {
+        String[] cols = {ID, USERNAME, MOB};
+        SQLiteDatabase db = getReadableDatabase();
+        String selection = EMAIL + "=?" + " or " + MOB + "=?";
+        String selectionArgs[] = {email, mob};
+        Cursor cursor = db.query(TABLE_NAME, cols, selection, selectionArgs, null, null, null);
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+        if (count > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public ArrayList<String> getData(String email) {
+        ArrayList<String> data = new ArrayList<>();
+        String[] selectionArgs = {email};
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, null, "email=?", selectionArgs, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
+                data.add(cursor.getString(cursor.getColumnIndex(ID)));
+                data.add(cursor.getString(cursor.getColumnIndex(USERNAME)));
+                data.add(cursor.getString(cursor.getColumnIndex(EMAIL)));
+                data.add(cursor.getString(cursor.getColumnIndex(PASSWORD)));
+            } while (cursor.moveToNext());
+        }
+        return data;
     }
 }

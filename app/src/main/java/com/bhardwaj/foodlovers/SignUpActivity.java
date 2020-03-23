@@ -79,16 +79,22 @@ public class SignUpActivity extends AppCompatActivity {
         String userInput = username.getText().toString().trim();
         String mobInput = mob.getText().toString().trim();
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        SQLiteDatabase database = databaseHelper.getWritableDatabase();
-        databaseHelper.addUser(userInput, passInput, emailInput, mobInput, database);
-        databaseHelper.close();
-        email.setText("");
-        password.setText("");
-        username.setText("");
-        mob.setText("");
+        if (databaseHelper.checkUserExists(emailInput, mobInput)) {
+            view.setEnabled(false);
+            Toast.makeText(this, "User already exists!", Toast.LENGTH_SHORT).show();
+            view.setEnabled(true);
+        } else {
+            SQLiteDatabase database = databaseHelper.getWritableDatabase();
+            databaseHelper.addUser(userInput, passInput, emailInput, mobInput, database);
+            databaseHelper.close();
+            email.setText("");
+            password.setText("");
+            username.setText("");
+            mob.setText("");
 
-        Toast.makeText(this, "Signed Up", Toast.LENGTH_SHORT).show();
-        view.setEnabled(false);
+            Toast.makeText(this, "Signed Up", Toast.LENGTH_SHORT).show();
+            view.setEnabled(false);
+        }
     }
 
 }

@@ -98,7 +98,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_signup_signup"
-            app:layout_constraintVertical_bias="0.036" />
+            app:layout_constraintVertical_bias="0.111" />
 
         <TextView
             android:id="@+id/signIn_txt4"
@@ -111,16 +111,17 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_signup_signup"
-            app:layout_constraintVertical_bias="0.141" />
+            app:layout_constraintVertical_bias="0.214" />
 
         <EditText
             android:id="@+id/username_editTxt_signup"
-            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
             android:layout_width="307dp"
             android:layout_height="51dp"
+            android:autoSizeMaxTextSize="18sp"
             android:background="@drawable/email_box"
             android:clickable="false"
             android:ems="10"
@@ -130,6 +131,7 @@
             android:inputType="textEmailAddress"
             android:textColor="#999999"
             android:textColorHint="#E3E3E3"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -138,7 +140,7 @@
 
         <EditText
             android:id="@+id/pass_editTxt_signup"
-            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputEditText.OutlinedBox.Dense"
             android:layout_width="307dp"
             android:layout_height="51dp"
             android:background="@drawable/email_box"

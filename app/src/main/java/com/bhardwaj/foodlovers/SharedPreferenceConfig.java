@@ -13,6 +13,7 @@ public class SharedPreferenceConfig {
     }
 
     public void writeLoginStatus(boolean status) {
+        DatabaseHelper db = new DatabaseHelper(context.getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(context.getResources().getString(R.string.login_status_preference), status);
         editor.commit();

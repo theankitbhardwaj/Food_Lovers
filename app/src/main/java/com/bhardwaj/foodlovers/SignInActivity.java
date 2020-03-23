@@ -13,6 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignInActivity extends AppCompatActivity {
     Button bt_signIn;
     SharedPreferenceConfig preferenceConfig;
@@ -59,7 +63,9 @@ public class SignInActivity extends AppCompatActivity {
 
     public void signIn(View view) {
         if (db.checkUser(email.getText().toString().trim(), password.getText().toString().trim())) {
+            ArrayList<String> data = db.getData(email.getText().toString().trim());
             Intent intent = new Intent(this, MainHomeActivity.class);
+            intent.putExtra("userData", data);
             startActivity(intent);
             preferenceConfig.writeLoginStatus(true);
             view.setEnabled(false);
