@@ -2,6 +2,7 @@ package com.bhardwaj.foodlovers;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,7 +20,7 @@ import android.widget.TextView;
  * A simple {@link Fragment} subclass.
  */
 public class ProfileFragment extends Fragment {
-    public TextView usernameTextView, emailTextView, mobTextView, bt_logout;
+    public TextView usernameTextView, emailTextView, mobTextView, bt_logout, contactTextView, helpTextView;
     SharedPreferenceConfig preferenceConfig;
 
     @Override
@@ -30,6 +31,8 @@ public class ProfileFragment extends Fragment {
         emailTextView = view.findViewById(R.id.textView_email);
         mobTextView = view.findViewById(R.id.textView_mob);
         bt_logout = view.findViewById(R.id.bt_logout);
+        contactTextView = view.findViewById(R.id.textView_contact);
+        helpTextView = view.findViewById(R.id.textView_help);
         super.onViewCreated(view, savedInstanceState);
         usernameTextView.setText(data[0]);
         emailTextView.setText(data[2]);
@@ -42,13 +45,30 @@ public class ProfileFragment extends Fragment {
                 startActivity(new Intent(getContext(), SignInActivity.class));
             }
         });
+
+        contactTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("https://www.github.com/theankitbhardwaj");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+
+        helpTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("https://www.github.com/theankitbhardwaj");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
     }
 
 
     public ProfileFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
