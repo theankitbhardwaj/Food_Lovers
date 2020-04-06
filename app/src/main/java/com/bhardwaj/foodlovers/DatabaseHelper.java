@@ -55,32 +55,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] cols = {ID, USERNAME, MOB};
         SQLiteDatabase db = getReadableDatabase();
         String selection = EMAIL + "=?" + " and " + PASSWORD + "=?";
-        String selectionArgs[] = {email, password};
+        String[] selectionArgs = {email, password};
         Cursor cursor = db.query(TABLE_NAME, cols, selection, selectionArgs, null, null, null);
         int count = cursor.getCount();
         cursor.close();
         db.close();
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return count > 0;
     }
 
     public boolean checkUserExists(String email, String mob) {
         String[] cols = {ID, USERNAME, MOB};
         SQLiteDatabase db = getReadableDatabase();
         String selection = EMAIL + "=?" + " or " + MOB + "=?";
-        String selectionArgs[] = {email, mob};
+        String[] selectionArgs = {email, mob};
         Cursor cursor = db.query(TABLE_NAME, cols, selection, selectionArgs, null, null, null);
         int count = cursor.getCount();
         cursor.close();
         db.close();
-        if (count > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return count > 0;
     }
 
     public ArrayList<String> getData(String email) {
@@ -92,6 +84,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             do {
                 data.add(cursor.getString(cursor.getColumnIndex(ID)));
                 data.add(cursor.getString(cursor.getColumnIndex(USERNAME)));
+                data.add(cursor.getString(cursor.getColumnIndex(MOB)));
                 data.add(cursor.getString(cursor.getColumnIndex(EMAIL)));
                 data.add(cursor.getString(cursor.getColumnIndex(PASSWORD)));
             } while (cursor.moveToNext());

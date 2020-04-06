@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".MainHomeActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -15,6 +16,7 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
+        android:background="#FFFFFF"
         android:layout_marginBottom="-3dp"
         app:elevation="8dp"
         app:menu="@menu/bottom_nav_menu" />
@@ -30,6 +32,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
+        android:background="#FFFFFF"
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="-1dp">
 

@@ -59,5 +59,9 @@ public class MainHomeActivity extends AppCompatActivity {
         bottomNav.setSelectedItemId(R.id.navigation_home);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
+    }
 }

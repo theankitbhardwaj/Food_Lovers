@@ -65,7 +65,8 @@ public class SignInActivity extends AppCompatActivity {
         if (db.checkUser(email.getText().toString().trim(), password.getText().toString().trim())) {
             ArrayList<String> data = db.getData(email.getText().toString().trim());
             Intent intent = new Intent(this, MainHomeActivity.class);
-            intent.putExtra("userData", data);
+            preferenceConfig.writeUserData(data.get(1), data.get(2), data.get(3));
+            //intent.putExtra("userData", data);
             startActivity(intent);
             preferenceConfig.writeLoginStatus(true);
             view.setEnabled(false);

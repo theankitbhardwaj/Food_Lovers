@@ -14,18 +14,23 @@
             android:name=".MainHomeActivity"
             android:screenOrientation="portrait"></activity>
         <activity
+            android:noHistory="true"
             android:name=".SignUpActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:noHistory="true"
             android:name=".SignInActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:noHistory="true"
             android:name=".SplashFinalActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:noHistory="true"
             android:name=".Splash2Activity"
             android:screenOrientation="portrait" />
         <activity
+            android:noHistory="true"
             android:name=".Splash1Activity"
             android:screenOrientation="portrait">
             <intent-filter>

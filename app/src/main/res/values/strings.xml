@@ -35,4 +35,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_preference">com.bhardwaj.foodLovers_login_preference</string>
     <string name="login_status_preference">com.bhardwaj.foodLovers_login_status_preference</string>
+    <string name="login_username">com.bhardwaj.foodLovers_username</string>
+    <string name="login_mob">co..bhardwaj.foodLovers_mob</string>
+    <string name="login_email">co..bhardwaj.foodLovers_email</string>
 </resources>

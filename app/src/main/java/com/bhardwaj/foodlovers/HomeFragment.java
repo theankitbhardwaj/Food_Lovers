@@ -25,6 +25,7 @@ public class HomeFragment extends Fragment {
     public Button bt_logout;
     public Context context;
     public TextView welcomeText;
+    SharedPreferenceConfig preferenceConfig;
     public HomeFragment() {
         // Required empty public constructor;
     }
@@ -32,19 +33,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        bt_logout = view.findViewById(R.id.bt_Logout);
+        context = getContext();
+        preferenceConfig = new SharedPreferenceConfig(context);
         welcomeText = view.findViewById(R.id.textView_WelcomeText);
-        List<String> data = getArguments().getStringArrayList("userData");
-        welcomeText.setText("Welcome \n" + data.get(1));
-        bt_logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                SharedPreferenceConfig preferenceConfig = new SharedPreferenceConfig(getContext());
-                preferenceConfig.writeLoginStatus(false);
-                startActivity(new Intent(getContext(), SignInActivity.class));
-            }
-        });
+        String[] data = preferenceConfig.readUserData();
+        welcomeText.setText("Welcome \n" + data[0] + "\n" + data[1] + "\n" + data[2]);
     }
 
     @Override
