@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView_bfFood"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/pancake" />
+
+        <TextView
+            android:id="@+id/textView_bfFood"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView_bfFood"
+            android:layout_centerHorizontal="false"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="1dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Pancake "
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/imageView_bfRating"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_bfFood"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="0dp"
+            app:srcCompat="@android:drawable/star_off" />
+
+        <TextView
+            android:id="@+id/textView_bfRating"
+            android:layout_width="87dp"
+            android:layout_height="28dp"
+            android:layout_below="@+id/textView_bfFood"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/imageView_bfRating"
+            android:fontFamily="@font/montserrat_semibold"
+            android:gravity="clip_vertical|center_vertical"
+            android:text="4.4"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView_bfPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_below="@+id/imageView_bfFood"
+            android:layout_alignEnd="@id/imageView_bfFood"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@id/textView_bfRating"
+            android:fontFamily="@font/montserrat_semibold"
+            android:gravity="center_vertical"
+            android:text="₹ 150"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
