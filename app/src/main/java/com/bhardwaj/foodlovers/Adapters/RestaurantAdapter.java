@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bhardwaj.foodlovers.Models.ModelRestaurants;
 import com.bhardwaj.foodlovers.R;
+import com.squareup.picasso.OkHttpDownloader;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -35,7 +37,9 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantAdapter.ViewHolder holder, int position) {
-        holder.imageView.setImageResource(models.get(position).getResImage());
+        Picasso.Builder builder = new Picasso.Builder(context);
+        builder.downloader(new OkHttpDownloader(context));
+        builder.build().load(models.get(position).getResImage()).resize(100, 100).into(holder.imageView);
         holder.textView.setText(models.get(position).getResName());
     }
 

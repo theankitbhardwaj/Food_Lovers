@@ -1,19 +1,23 @@
 package com.bhardwaj.foodlovers.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ModelRestaurants {
-    private int resImage;
+    @SerializedName("imgUrl")
+    private String resImage;
+    @SerializedName("name")
     private String resName;
 
-    public ModelRestaurants(int resImage, String resName) {
+    public ModelRestaurants(String resImage, String resName) {
         this.resImage = resImage;
         this.resName = resName;
     }
 
-    public int getResImage() {
+    public String getResImage() {
         return resImage;
     }
 
-    public void setResImage(int resImage) {
+    public void setResImage(String resImage) {
         this.resImage = resImage;
     }
 

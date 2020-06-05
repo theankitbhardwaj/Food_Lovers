@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:orientation="horizontal">
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <ImageView
-            android:id="@+id/imageView_offDishImg"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerInParent="false"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/steamfood"
-            android:scaleType="centerCrop"
-            android:src="@drawable/gradient">
-
-        </ImageView>
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/textView_offer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/imageView_offDishImg"
-            android:layout_alignStart="@+id/imageView_offDishImg"
-            android:layout_alignLeft="@id/imageView_offDishImg"
-            android:layout_alignTop="@id/imageView_offDishImg"
-            android:layout_alignEnd="@+id/imageView_offDishImg"
-            android:layout_alignRight="@id/imageView_offDishImg"
+            android:layout_alignEnd="@+id/cvOff"
+            android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="230dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginTop="210dp"
+            android:elevation="10dp"
             android:fontFamily="@font/montserrat_bold"
             android:text="Get 50% discount"
             android:textAlignment="center"
             android:textColor="@android:color/white"
             android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/textView_offCondition"
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvOff"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView_offer"
-            android:layout_alignStart="@+id/imageView_offDishImg"
-            android:layout_alignEnd="@+id/imageView_offDishImg"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/montserrat_semibold"
-            android:text="on First 2 Orders"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="18sp" />
+            app:cardBackgroundColor="#00FFFFFF"
+            app:cardCornerRadius="15dp">
+
+            <ImageView
+                android:id="@+id/imageView_offDishImg"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:background="@drawable/load"
+                android:scaleType="centerCrop"
+                android:src="@drawable/gradient">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/textView_offCondition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/textView_offer"
+                android:layout_marginTop="250dp"
+                android:elevation="10dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="on First 2 Orders"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp" />
+
+        </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
 

@@ -1,6 +1,9 @@
 package com.bhardwaj.foodlovers.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bhardwaj.foodlovers.Models.ModelOffers;
 import com.bhardwaj.foodlovers.R;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.OkHttpDownloader;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.List;
 
@@ -34,8 +41,21 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageView.setBackgroundResource(models.get(position).getDishImage());
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        Picasso.Builder builder = new Picasso.Builder(context);
+        builder.downloader(new OkHttpDownloader(context));
+        final ImageView img = new ImageView(context);
+        builder.build().load(models.get(position).getDishImage()).into(img, new Callback() {
+            @Override
+            public void onSuccess() {
+                holder.imageView.setBackground(img.getDrawable());
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
         holder.textView_offer.setText(models.get(position).getOffer());
         holder.textView_offerCondition.setText(models.get(position).getOfferCondition());
     }

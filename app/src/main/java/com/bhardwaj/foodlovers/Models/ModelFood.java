@@ -2,7 +2,7 @@ package com.bhardwaj.foodlovers.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ModelTopPicks {
+public class ModelFood {
     @SerializedName("imgUrl")
     private String dishImage;
     @SerializedName("name")
@@ -12,7 +12,7 @@ public class ModelTopPicks {
     @SerializedName("price")
     private String dishPrice;
 
-    public ModelTopPicks(String dishImage, String dishName, String dishRating, String dishPrice) {
+    public ModelFood(String dishImage, String dishName, String dishRating, String dishPrice) {
         this.dishImage = dishImage;
         this.dishName = dishName;
         this.dishRating = dishRating;

@@ -1,12 +1,18 @@
 package com.bhardwaj.foodlovers.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ModelBreakfast {
-    private int dishImage;
-    private String dishRating;
+    @SerializedName("imgUrl")
+    private String dishImage;
+    @SerializedName("name")
     private String dishName;
+    @SerializedName("rating")
+    private String dishRating;
+    @SerializedName("price")
     private String dishPrice;
 
-    public ModelBreakfast(int dishImage, String dishName, String dishRating, String dishPrice) {
+    public ModelBreakfast(String dishImage, String dishName, String dishRating, String dishPrice) {
         this.dishImage = dishImage;
         this.dishName = dishName;
         this.dishRating = dishRating;
@@ -21,11 +27,11 @@ public class ModelBreakfast {
         this.dishName = dishName;
     }
 
-    public int getDishImage() {
+    public String getDishImage() {
         return dishImage;
     }
 
-    public void setDishImage(int dishImage) {
+    public void setDishImage(String dishImage) {
         this.dishImage = dishImage;
     }
 

@@ -1,11 +1,16 @@
 package com.bhardwaj.foodlovers.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ModelOffers {
-    private int dishImage;
+    @SerializedName("imgUrl")
+    private String dishImage;
+    @SerializedName("offer")
     private String offer;
+    @SerializedName("offerCondition")
     private String offerCondition;
 
-    public ModelOffers(int dishImage, String offer, String offerCondition) {
+    public ModelOffers(String dishImage, String offer, String offerCondition) {
         this.dishImage = dishImage;
         this.offer = offer;
         this.offerCondition = offerCondition;
@@ -19,11 +24,11 @@ public class ModelOffers {
         this.offer = offer;
     }
 
-    public int getDishImage() {
+    public String getDishImage() {
         return dishImage;
     }
 
-    public void setDishImage(int dishImage) {
+    public void setDishImage(String dishImage) {
         this.dishImage = dishImage;
     }
 

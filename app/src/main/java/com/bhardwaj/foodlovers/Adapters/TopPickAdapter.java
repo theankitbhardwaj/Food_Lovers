@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bhardwaj.foodlovers.Models.ModelTopPicks;
 import com.bhardwaj.foodlovers.R;
+import com.squareup.picasso.OkHttpDownloader;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -35,9 +37,11 @@ public class TopPickAdapter extends RecyclerView.Adapter<TopPickAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.imageView.setImageResource(models.get(position).getDishImage());
+        Picasso.Builder builder = new Picasso.Builder(context);
+        builder.downloader(new OkHttpDownloader(context));
+        builder.build().load(models.get(position).getDishImage()).into(holder.imageView);
         holder.textView_rating.setText(models.get(position).getDishRating());
-        holder.textView_price.setText(models.get(position).getDishPrice());
+        holder.textView_price.setText("• ₹ " + models.get(position).getDishPrice());
         holder.textView_name.setText(models.get(position).getDishName());
     }
 
