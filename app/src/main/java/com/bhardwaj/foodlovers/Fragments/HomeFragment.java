@@ -167,5 +167,9 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        ;
+        super.onSaveInstanceState(outState);
+    }
 }

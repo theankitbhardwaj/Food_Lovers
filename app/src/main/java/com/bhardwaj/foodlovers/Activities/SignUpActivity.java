@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bhardwaj.foodlovers.DB.DatabaseHelper;
+import com.bhardwaj.foodlovers.DB.SharedPreferenceConfig;
 import com.bhardwaj.foodlovers.R;
 
 
@@ -21,6 +22,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText username, email, password, mob;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     String mobPattern = "[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]";
+    SharedPreferenceConfig preferenceConfig;
     private TextWatcher signUpTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -56,7 +58,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         bt_signUp = findViewById(R.id.bt_signup_signup);
         email = findViewById(R.id.email_editTxt_signup);
         password = findViewById(R.id.pass_editTxt_signup);
@@ -87,13 +89,16 @@ public class SignUpActivity extends AppCompatActivity {
             SQLiteDatabase database = databaseHelper.getWritableDatabase();
             databaseHelper.addUser(userInput, passInput, emailInput, mobInput, database);
             databaseHelper.close();
+            preferenceConfig.writeUserData(userInput, mobInput, emailInput);
             email.setText("");
             password.setText("");
             username.setText("");
             mob.setText("");
-
+            preferenceConfig.writeLoginStatus(true);
             Toast.makeText(this, "Signed Up", Toast.LENGTH_SHORT).show();
             view.setEnabled(false);
+            Intent i = new Intent(this, SignInActivity.class);
+            startActivity(i);
         }
     }
 

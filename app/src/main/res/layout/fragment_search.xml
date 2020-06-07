@@ -7,7 +7,7 @@
     tools:context=".Fragments.SearchFragment">
 
     <TextView
-        android:id="@+id/textViewDots"
+        android:id="@+id/txtHSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -40,23 +40,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_dot" />
+        app:layout_constraintTop_toBottomOf="@id/txtHSearch" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutBeforeSearch"
         android:layout_width="409dp"
         android:layout_height="587dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_search">
+        app:layout_constraintTop_toBottomOf="@+id/editText_search"
+        app:layout_constraintVertical_bias="0.078">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/img_searchIco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="128dp"
@@ -66,7 +67,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/txtSearchDesc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="90dp"
@@ -79,7 +80,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintTop_toBottomOf="@+id/img_searchIco" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

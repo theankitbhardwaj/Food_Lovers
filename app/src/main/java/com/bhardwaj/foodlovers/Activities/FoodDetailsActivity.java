@@ -30,7 +30,7 @@ public class FoodDetailsActivity extends AppCompatActivity {
         ImageView imgFood = findViewById(R.id.img_fdImage);
         Picasso.Builder builder = new Picasso.Builder(this);
         builder.downloader(new OkHttpDownloader(this));
-        builder.build().load(imgUrl).centerCrop().resize(1000, 1000).into(imgFood);
+        builder.build().load(imgUrl).fit().centerCrop().into(imgFood);
         TextView txtName = findViewById(R.id.txt_foodName);
         TextView txtfdName = findViewById(R.id.txt_fdName);
         TextView txtfdRating = findViewById(R.id.txt_fdRating);

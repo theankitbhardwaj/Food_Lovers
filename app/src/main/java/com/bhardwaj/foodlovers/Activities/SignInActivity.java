@@ -52,13 +52,16 @@ public class SignInActivity extends AppCompatActivity {
         preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         db = new DatabaseHelper(this);
         super.onCreate(savedInstanceState);
+        if (preferenceConfig.readLoginStatus()) {
+            Intent intent = new Intent(this, MainHomeActivity.class);
+            startActivity(intent);
+        }
         setContentView(R.layout.activity_sign_in);
         bt_signIn = findViewById(R.id.bt_signup_signup);
         email = findViewById(R.id.username_editTxt_signup);
         password = findViewById(R.id.pass_editTxt_signup);
         email.addTextChangedListener(signInTextWatcher);
         password.addTextChangedListener(signInTextWatcher);
-
     }
 
     public void signIn(View view) {
