@@ -51,7 +51,7 @@
         android:text="Pancakes"
         android:textColor="@color/textBlack"
         android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cvFd"
         app:layout_constraintTop_toBottomOf="@id/cvFd" />
 
     <ImageView
@@ -60,7 +60,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="6dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cvFd"
         app:layout_constraintTop_toBottomOf="@+id/txt_fdName"
         app:srcCompat="@drawable/ic_star" />
 
@@ -114,9 +114,9 @@
         android:text="A pancake is a flat cake, often thin and round, prepared from a starch-based batter that may contain eggs, milk and butter and cooked on a hot surface such as a griddle or frying pan, often frying with oil or butter."
         android:textColor="@color/textGray"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/cvFd"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cvFd"
         app:layout_constraintTop_toBottomOf="@+id/txt_fdPrice" />
 
     <TextView
@@ -129,7 +129,7 @@
         android:text="Quantity"
         android:textColor="@color/textBlack"
         android:textSize="22sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cvFd"
         app:layout_constraintTop_toBottomOf="@+id/txt_fdDesc" />
 
     <TextView
@@ -141,6 +141,6 @@
         android:fontFamily="@font/montserrat_bold"
         android:text="•    10 pieces"
         android:textColor="@color/textGray"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cvFd"
         app:layout_constraintTop_toBottomOf="@+id/txt_fdHquantity" />
 </androidx.constraintlayout.widget.ConstraintLayout>
