@@ -7,4 +7,8 @@
     <color name="colorTextField">#999999</color>
     <color name="orangeDark">#DD820C</color>
     <color name="orangeFade">#80DD820C</color>
+    <color name="textBlack">#000000</color>
+    <color name="textGray">#8F000000</color>
+    <color name="textWhite">#FFFFFF</color>
+
 </resources>

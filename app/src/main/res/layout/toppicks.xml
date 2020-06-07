@@ -67,8 +67,8 @@
             android:layout_below="@id/cvTp"
             android:layout_alignBaseline="@id/imageView_rating"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="47dp"
-            android:layout_marginTop="22sp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/montserrat_semibold"
             android:text="• ₹ 150"
             android:textSize="10sp" />

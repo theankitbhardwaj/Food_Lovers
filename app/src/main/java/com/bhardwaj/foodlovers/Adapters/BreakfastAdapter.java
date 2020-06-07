@@ -1,6 +1,8 @@
 package com.bhardwaj.foodlovers.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,11 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bhardwaj.foodlovers.Activities.FoodDetailsActivity;
 import com.bhardwaj.foodlovers.Models.ModelBreakfast;
 import com.bhardwaj.foodlovers.R;
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.ViewHolder> {
@@ -36,10 +40,23 @@ public class BreakfastAdapter extends RecyclerView.Adapter<BreakfastAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Picasso.Builder builder = new Picasso.Builder(context).indicatorsEnabled(true);
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+        Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttpDownloader(context));
         builder.build().load(models.get(position).getDishImage()).into(holder.imageView);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, FoodDetailsActivity.class);
+                i.putExtra("FoodImage", models.get(position).getDishImage());
+                i.putExtra("FoodName", models.get(position).getDishName());
+                i.putExtra("FoodPrice", models.get(position).getDishPrice());
+                i.putExtra("FoodRating", models.get(position).getDishRating());
+                i.putExtra("FoodDesc", models.get(position).getDishDesc());
+                i.putExtra("FoodQuantity", models.get(position).getDishQuantity());
+                context.startActivity(i);
+            }
+        });
         holder.textView_rating.setText(models.get(position).getDishRating());
         holder.textView_price.setText("• ₹ " + models.get(position).getDishPrice());
         holder.textView_name.setText(models.get(position).getDishName());

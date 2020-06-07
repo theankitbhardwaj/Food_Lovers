@@ -6,4 +6,141 @@
     android:layout_height="match_parent"
     tools:context=".Activities.FoodDetailsActivity">
 
+    <TextView
+        android:id="@+id/txt_foodName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Pancakes"
+        android:textColor="@color/textBlack"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvFd"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_foodName">
+
+        <ImageView
+            android:id="@+id/img_fdImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/load" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txt_fdName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Pancakes"
+        android:textColor="@color/textBlack"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvFd" />
+
+    <ImageView
+        android:id="@+id/img_fdRating"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fdName"
+        app:srcCompat="@drawable/ic_star" />
+
+    <TextView
+        android:id="@+id/txt_fdRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:text="4.0"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/img_fdRating"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fdName" />
+
+    <TextView
+        android:id="@+id/txt_fdPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="•  ₹ 150"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/txt_fdRating"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fdName" />
+
+    <Button
+        android:id="@+id/btn_addToCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_style"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Add"
+        android:textColor="@color/textWhite"
+        app:layout_constraintEnd_toEndOf="@id/cvFd"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/txt_fdName"
+        app:layout_constraintTop_toBottomOf="@id/cvFd" />
+
+    <TextView
+        android:id="@+id/txt_fdDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="A pancake is a flat cake, often thin and round, prepared from a starch-based batter that may contain eggs, milk and butter and cooked on a hot surface such as a griddle or frying pan, often frying with oil or butter."
+        android:textColor="@color/textGray"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fdPrice" />
+
+    <TextView
+        android:id="@+id/txt_fdHquantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="Quantity"
+        android:textColor="@color/textBlack"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fdDesc" />
+
+    <TextView
+        android:id="@+id/txt_fdQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="•    10 pieces"
+        android:textColor="@color/textGray"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fdHquantity" />
 </androidx.constraintlayout.widget.ConstraintLayout>
