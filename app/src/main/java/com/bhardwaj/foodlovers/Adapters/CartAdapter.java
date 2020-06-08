@@ -46,8 +46,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.fName.setText(cartItems.get(position).getfName());
         holder.fDesc.setText(cartItems.get(position).getfDesc());
         count = cartItems.get(position).getfCount();
-        m = cartItems.get(holder.getAdapterPosition());
-
         holder.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,7 +58,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 CartFragment.removeData(holder.getAdapterPosition(), cartItems.get(holder.getAdapterPosition()).getfImage(), cartItems.get(holder.getAdapterPosition()).getfName(), cartItems.get(holder.getAdapterPosition()).getfDesc(), cartItems.get(holder.getAdapterPosition()).getfPrice(), cartItems.get(holder.getAdapterPosition()).getfCount());
             }
         });
-        holder.fCount.setText(String.valueOf(m.getfCount()));
+        holder.fCount.setText(String.valueOf(cartItems.get(holder.getAdapterPosition()).getfCount()));
         holder.fPrice.setText("₹ " + cartItems.get(position).getfPrice());
     }
 

@@ -53,10 +53,10 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginEnd="16dp"
-                android:background="@drawable/tiny_button_style"
+                android:background="@drawable/tiny_button_style_remove"
                 android:fontFamily="@font/roboto_medium"
                 android:text="-"
-                android:textColor="@color/textWhite"
+                android:textColor="@color/colorPrimary"
                 app:layout_constraintEnd_toStartOf="@+id/txt_countCart"
                 app:layout_constraintTop_toTopOf="@+id/btn_addItem" />
 
