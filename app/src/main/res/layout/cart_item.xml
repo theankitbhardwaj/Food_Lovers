@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_addItem"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/tiny_button_style"
+                android:fontFamily="@font/roboto_medium"
+                android:text="+"
+                android:textColor="@color/textWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txt_descCart"
+                android:layout_width="186dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat_regular"
+                android:maxLines="3"
+                android:scrollHorizontally="true"
+                android:text="The Veg Surprise burger is a perfect combination a mixed veg patty topped with smoky dip sauce freshly sliced tomato and a unique coleslaw mix which is the first of its kind in the category"
+                android:textColor="@color/textGray"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="@+id/txt_nameCart"
+                app:layout_constraintTop_toBottomOf="@+id/txt_nameCart" />
+
+            <Button
+                android:id="@+id/btn_removeItem"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/tiny_button_style"
+                android:fontFamily="@font/roboto_medium"
+                android:text="-"
+                android:textColor="@color/textWhite"
+                app:layout_constraintEnd_toStartOf="@+id/txt_countCart"
+                app:layout_constraintTop_toTopOf="@+id/btn_addItem" />
+
+            <TextView
+                android:id="@+id/txt_countCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="1"
+                android:textColor="@color/textBlack"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@+id/btn_addItem"
+                app:layout_constraintTop_toTopOf="@+id/btn_addItem" />
+
+            <TextView
+                android:id="@+id/txt_cartPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="$130"
+                android:textColor="@color/textBlack"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_addItem"
+                app:layout_constraintTop_toBottomOf="@+id/txt_descCart" />
+
+            <TextView
+                android:id="@+id/txt_nameCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:fontFamily="@font/montserrat_semibold"
+                android:text="Pizza"
+                android:textColor="@color/textBlack"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/cvCart"
+                app:layout_constraintTop_toTopOf="@+id/cvCart" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:layout_marginStart="8dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/img_foodCart"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/dp" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
