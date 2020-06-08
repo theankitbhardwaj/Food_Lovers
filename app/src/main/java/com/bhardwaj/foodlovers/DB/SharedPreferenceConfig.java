@@ -14,32 +14,29 @@ public class SharedPreferenceConfig {
         sharedPreferences = context.getSharedPreferences(context.getResources().getString(R.string.login_preference), Context.MODE_PRIVATE);
     }
 
-    public void writeUserData(String username, String mob, String email) {
+    public void writeUserAddress(String address) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(context.getResources().getString(R.string.login_username), username);
-        editor.putString(context.getResources().getString(R.string.login_mob), mob);
-        editor.putString(context.getResources().getString(R.string.login_email), email);
+        editor.putString(context.getResources().getString(R.string.address), address);
         editor.commit();
     }
 
-    public String[] readUserData() {
-        String[] data = new String[3];
-        data[0] = sharedPreferences.getString(context.getResources().getString(R.string.login_username), "Your Name");
-        data[1] = sharedPreferences.getString(context.getResources().getString(R.string.login_mob), "Your Mob no.");
-        data[2] = sharedPreferences.getString(context.getResources().getString(R.string.login_email), "Your Email");
+    public String readUserAddress() {
+        String data = sharedPreferences.getString(context.getResources().getString(R.string.address), "Enter Address Here");
         return data;
     }
 
-    public void writeLoginStatus(boolean status) {
+    public void writeOnboardingStatus(boolean status) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(context.getResources().getString(R.string.login_status_preference), status);
+        editor.putBoolean(context.getResources().getString(R.string.onboarding_status), status);
         editor.commit();
     }
 
-    public boolean readLoginStatus() {
+    public boolean readOnboardingStatus() {
         boolean status;
-        status = sharedPreferences.getBoolean(context.getResources().getString(R.string.login_status_preference), false);
+        status = sharedPreferences.getBoolean(context.getResources().getString(R.string.onboarding_status), false);
         return status;
     }
+
+
 }
 

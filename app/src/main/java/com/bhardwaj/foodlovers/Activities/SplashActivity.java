@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.bhardwaj.foodlovers.Adapters.SplashAdapter;
 import com.bhardwaj.foodlovers.R;
 import com.bhardwaj.foodlovers.DB.SharedPreferenceConfig;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SplashActivity extends AppCompatActivity {
     SharedPreferenceConfig preferenceConfig;
@@ -24,25 +26,33 @@ public class SplashActivity extends AppCompatActivity {
     private int currentPage;
     private RelativeLayout pLayout;
     private Button btnNext,btnFinish;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        mAuth = FirebaseAuth.getInstance();
         layout = findViewById(R.id.pagination);
         pLayout = findViewById(R.id.splashLayout);
         btnNext = findViewById(R.id.btnNext);
         btnFinish = findViewById(R.id.btnFinish);
-
+        preferenceConfig.writeOnboardingStatus(true);
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(),SignInActivity.class);
                 startActivity(i);
+                finish();
             }
         });
-        if (preferenceConfig.readLoginStatus()) {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
             startActivity(new Intent(this, MainHomeActivity.class));
+            finish();
+        } else if (preferenceConfig.readOnboardingStatus()) {
+            startActivity(new Intent(this, SignInActivity.class));
+            finish();
         }
         final ViewPager2 vp = findViewById(R.id.viewPager2);
         SplashAdapter adapter = new SplashAdapter();

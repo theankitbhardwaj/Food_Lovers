@@ -20,7 +20,6 @@
     <string name="search_delicious_food">Search Delicious Food</string>
     <string name="search_and_order_delicious_food_and_enjoy_with_your_friends_and_family">Search and Order delicious food and enjoy with your friends and family.</string>
     <string name="search_splash_image">Search Splash Image</string>
-    <string name="pagination_1">Pagination 1</string>
     <string name="next_button">next button</string>
     <string name="fastest_delivery">Fastest Delivery</string>
     <string name="get_it_fast_with_your_food_lovers_account_order_online_from_top_food_restaurants_in_your_locality">Get it fast with your Food Lovers account. Order online from top Food restaurants in Your locality.</string>
@@ -38,4 +37,6 @@
     <string name="login_username">com.bhardwaj.foodLovers_username</string>
     <string name="login_mob">co..bhardwaj.foodLovers_mob</string>
     <string name="login_email">co..bhardwaj.foodLovers_email</string>
+    <string name="onboarding_status">com.bhardwaj.foodLovers_onboardingStatus</string>
+    <string name="address">Address Here</string>
 </resources>

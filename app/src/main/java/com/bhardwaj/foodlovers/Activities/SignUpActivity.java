@@ -1,9 +1,9 @@
 package com.bhardwaj.foodlovers.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,14 +12,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.bhardwaj.foodlovers.DB.DatabaseHelper;
 import com.bhardwaj.foodlovers.DB.SharedPreferenceConfig;
 import com.bhardwaj.foodlovers.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 
 public class SignUpActivity extends AppCompatActivity {
     Button bt_signUp;
-    EditText username, email, password, mob;
+    EditText username, email, password;
+    private FirebaseAuth mAuth;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     String mobPattern = "[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]";
     SharedPreferenceConfig preferenceConfig;
@@ -33,23 +40,16 @@ public class SignUpActivity extends AppCompatActivity {
             String emailInput = email.getText().toString().trim();
             String passInput = password.getText().toString().trim();
             String userInput = username.getText().toString().trim();
-            String mobInput = mob.getText().toString().trim();
-            bt_signUp.setEnabled(!emailInput.isEmpty() && !passInput.isEmpty() && !userInput.isEmpty() && !mobInput.isEmpty() && emailInput.matches(emailPattern) && mobInput.matches(mobPattern));
+            bt_signUp.setEnabled(!emailInput.isEmpty() && !passInput.isEmpty() && !userInput.isEmpty() && emailInput.matches(emailPattern));
         }
 
         @Override
         public void afterTextChanged(Editable editable) {
             String emailInput = email.getText().toString().trim();
-            String mobInput = mob.getText().toString().trim();
             if (!emailInput.matches(emailPattern) && emailInput.length() > 0) {
                 email.setTextColor(getResources().getColor(R.color.colorError));
             } else {
                 email.setTextColor(getResources().getColor(R.color.colorTextField));
-            }
-            if (!mobInput.matches(mobPattern) && mobInput.length() > 0) {
-                mob.setTextColor(getResources().getColor(R.color.colorError));
-            } else {
-                mob.setTextColor(getResources().getColor(R.color.colorTextField));
             }
         }
     };
@@ -63,11 +63,10 @@ public class SignUpActivity extends AppCompatActivity {
         email = findViewById(R.id.email_editTxt_signup);
         password = findViewById(R.id.pass_editTxt_signup);
         username = findViewById(R.id.username_editTxt_signup);
-        mob = findViewById(R.id.mobile_editTxt_signup);
         email.addTextChangedListener(signUpTextWatcher);
         password.addTextChangedListener(signUpTextWatcher);
         username.addTextChangedListener(signUpTextWatcher);
-        mob.addTextChangedListener(signUpTextWatcher);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void signIn(View view) {
@@ -75,31 +74,43 @@ public class SignUpActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void signUp(View view) {
+    public void signUp(final View view) {
         String emailInput = email.getText().toString().trim();
         String passInput = password.getText().toString().trim();
-        String userInput = username.getText().toString().trim();
-        String mobInput = mob.getText().toString().trim();
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        if (databaseHelper.checkUserExists(emailInput, mobInput)) {
-            view.setEnabled(false);
-            Toast.makeText(this, "User already exists!", Toast.LENGTH_SHORT).show();
-            view.setEnabled(true);
-        } else {
-            SQLiteDatabase database = databaseHelper.getWritableDatabase();
-            databaseHelper.addUser(userInput, passInput, emailInput, mobInput, database);
-            databaseHelper.close();
-            preferenceConfig.writeUserData(userInput, mobInput, emailInput);
-            email.setText("");
-            password.setText("");
-            username.setText("");
-            mob.setText("");
-            preferenceConfig.writeLoginStatus(true);
-            Toast.makeText(this, "Signed Up", Toast.LENGTH_SHORT).show();
-            view.setEnabled(false);
-            Intent i = new Intent(this, SignInActivity.class);
-            startActivity(i);
-        }
+        final String userInput = username.getText().toString().trim();
+
+        mAuth.createUserWithEmailAndPassword(emailInput, passInput).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    if (user != null) {
+                        Intent i = new Intent(getBaseContext(), SignInActivity.class);
+                        startActivity(i);
+                        UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(userInput)
+                                .build();
+                        user.updateProfile(profileUpdate).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                email.setText("");
+                                password.setText("");
+                                username.setText("");
+                                Toast.makeText(getBaseContext(), "Signed Up.", Toast.LENGTH_SHORT).show();
+                                view.setEnabled(false);
+                                finish();
+                            }
+                        });
+
+                    }
+                } else {
+                    if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                        Toast.makeText(getBaseContext(), "Email already in use", Toast.LENGTH_SHORT).show();
+                        view.setEnabled(true);
+                    }
+                }
+            }
+        });
     }
 
 }

@@ -1,5 +1,6 @@
 package com.bhardwaj.foodlovers.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,16 +12,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.bhardwaj.foodlovers.DB.DatabaseHelper;
 import com.bhardwaj.foodlovers.R;
 import com.bhardwaj.foodlovers.DB.SharedPreferenceConfig;
-
-import java.util.ArrayList;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignInActivity extends AppCompatActivity {
     Button bt_signIn;
+    public FirebaseAuth mAuth;
     SharedPreferenceConfig preferenceConfig;
-    DatabaseHelper db;
     EditText email, password;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z0-9]+\\.+[a-z]+";
     private TextWatcher signInTextWatcher = new TextWatcher() {
@@ -49,13 +54,8 @@ public class SignInActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
-        db = new DatabaseHelper(this);
+        mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState);
-        if (preferenceConfig.readLoginStatus()) {
-            Intent intent = new Intent(this, MainHomeActivity.class);
-            startActivity(intent);
-        }
         setContentView(R.layout.activity_sign_in);
         bt_signIn = findViewById(R.id.bt_signup_signup);
         email = findViewById(R.id.username_editTxt_signup);
@@ -65,36 +65,64 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public void signIn(View view) {
-        if (db.checkUser(email.getText().toString().trim(), password.getText().toString().trim())) {
-            ArrayList<String> data = db.getData(email.getText().toString().trim());
-            Intent intent = new Intent(this, MainHomeActivity.class);
-            preferenceConfig.writeUserData(data.get(1), data.get(2), data.get(3));
-            //intent.putExtra("userData", data);
-            startActivity(intent);
-            preferenceConfig.writeLoginStatus(true);
-            view.setEnabled(false);
-        } else {
-            view.setEnabled(false);
-            Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show();
-            view.setEnabled(true);
-        }
+        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    if (user != null) {
+                        Toast.makeText(getBaseContext(), "Signed In.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getBaseContext(), MainHomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                } else {
+                    if (task.getException() instanceof FirebaseAuthInvalidUserException) {
+                        Toast.makeText(getBaseContext(), "Incorrect Email Address", Toast.LENGTH_SHORT).show();
+                    } else if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                        Toast.makeText(getBaseContext(), "Invalid Password", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getBaseContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+        });
     }
 
     public void signUp(View view) {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void forgotPass(View view) {
-        Toast.makeText(this, "Forgot password opened...", Toast.LENGTH_SHORT).show();
+        String emailInput = email.getText().toString();
+        if (emailInput != null && !emailInput.isEmpty()) {
+            mAuth.sendPasswordResetEmail(emailInput).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getBaseContext(), "Password reset email sent", Toast.LENGTH_SHORT).show();
+                    } else if (task.getException() instanceof FirebaseAuthInvalidUserException) {
+                        Toast.makeText(getBaseContext(), "Email is not registered", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        } else {
+            Toast.makeText(getBaseContext(), "Enter email first.", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void googleSignIn(View view) {
-        Toast.makeText(this, "Google signin opened...", Toast.LENGTH_SHORT).show();
-    }
 
-    public void fbSignIn(View view) {
-        Toast.makeText(this, "Facebook signin opened...", Toast.LENGTH_SHORT).show();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(this, MainHomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
-
 }
