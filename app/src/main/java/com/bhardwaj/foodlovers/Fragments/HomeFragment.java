@@ -2,6 +2,7 @@ package com.bhardwaj.foodlovers.Fragments;
 
 
 import android.content.Context;
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ import com.bhardwaj.foodlovers.Adapters.OfferAdapter;
 import com.bhardwaj.foodlovers.Adapters.RestaurantAdapter;
 import com.bhardwaj.foodlovers.Adapters.TopPickAdapter;
 import com.bhardwaj.foodlovers.Models.ModelBreakfast;
+import com.bhardwaj.foodlovers.Models.ModelFood;
 import com.bhardwaj.foodlovers.Models.ModelOffers;
 import com.bhardwaj.foodlovers.Models.ModelRestaurants;
 import com.bhardwaj.foodlovers.Models.ModelTopPicks;
@@ -53,6 +55,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        final List<ModelFood> allFood = new ArrayList<>();
         String baseUrl = "https://theankitbhardwaj.github.io/jsonHost/";
         super.onViewCreated(view, savedInstanceState);
         context = getContext();

@@ -9,14 +9,20 @@ public class ModelFood {
     private String dishName;
     @SerializedName("rating")
     private String dishRating;
+    @SerializedName("desc")
+    private String dishDesc;
     @SerializedName("price")
     private String dishPrice;
+    @SerializedName("quantity")
+    private String dishQuantity;
 
-    public ModelFood(String dishImage, String dishName, String dishRating, String dishPrice) {
+    public ModelFood(String dishImage, String dishName, String dishRating, String dishDesc, String dishPrice, String dishQuantity) {
         this.dishImage = dishImage;
         this.dishName = dishName;
         this.dishRating = dishRating;
+        this.dishDesc = dishDesc;
         this.dishPrice = dishPrice;
+        this.dishQuantity = dishQuantity;
     }
 
     public String getDishName() {
@@ -49,5 +55,21 @@ public class ModelFood {
 
     public void setDishPrice(String dishPrice) {
         this.dishPrice = dishPrice;
+    }
+
+    public String getDishDesc() {
+        return dishDesc;
+    }
+
+    public void setDishDesc(String dishDesc) {
+        this.dishDesc = dishDesc;
+    }
+
+    public String getDishQuantity() {
+        return dishQuantity;
+    }
+
+    public void setDishQuantity(String dishQuantity) {
+        this.dishQuantity = dishQuantity;
     }
 }

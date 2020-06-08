@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -21,7 +23,20 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bhardwaj.foodlovers.API.RetroAPI;
+import com.bhardwaj.foodlovers.Adapters.SearchAdapter;
+import com.bhardwaj.foodlovers.Models.ModelFood;
+import com.bhardwaj.foodlovers.Models.ModelTopPicks;
 import com.bhardwaj.foodlovers.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 /**
@@ -32,24 +47,82 @@ public class SearchFragment extends Fragment {
     public ConstraintLayout layoutSearch;
     private TextView searchDesc;
     private ImageView searchIco;
+    static String searchFor = "";
+    Call<List<ModelFood>> callFood;
+    List<ModelFood> fetchedList;
+    private RecyclerView rvSearch;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        String baseUrl = "https://theankitbhardwaj.github.io/jsonHost/";
         searchEditText = view.findViewById(R.id.editText_search);
         layoutSearch = view.findViewById(R.id.layoutBeforeSearch);
         searchIco = view.findViewById(R.id.img_searchIco);
         searchDesc = view.findViewById(R.id.txtSearchDesc);
+        rvSearch = view.findViewById(R.id.rv_search);
+        rvSearch.setVisibility(View.INVISIBLE);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        RetroAPI service = retrofit.create(RetroAPI.class);
+        callFood = service.getFood();
+        callFood.enqueue(new Callback<List<ModelFood>>() {
+            @Override
+            public void onResponse(Call<List<ModelFood>> call, Response<List<ModelFood>> response) {
+                fetchedList = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<List<ModelFood>> call, Throwable t) {
+
+            }
+        });
         searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_DONE) {
-                    Toast.makeText(getContext(), "Search started...", Toast.LENGTH_SHORT).show();
                     layoutSearch.removeView(searchDesc);
-                    searchIco.setImageResource(R.drawable.load);
+                    layoutSearch.removeView(searchIco);
+                    layoutSearch.setVisibility(View.INVISIBLE);
+                    rvSearch.setVisibility(View.VISIBLE);
+                    searchFor = searchEditText.getText().toString();
+                    generateList(searchFor);
                 }
                 return false;
             }
         });
+
+
+    }
+
+    private void generateList(String s) {
+        List<ModelFood> searchRes = new ArrayList<>();
+        searchRes.clear();
+        if (s.isEmpty()) {
+            rvSearch.setVisibility(View.INVISIBLE);
+            rvSearch.setEnabled(false);
+            layoutSearch.setVisibility(View.VISIBLE);
+            layoutSearch.addView(searchDesc);
+            layoutSearch.addView(searchIco);
+        } else {
+            rvSearch.setVisibility(View.VISIBLE);
+            rvSearch.setEnabled(true);
+            layoutSearch.setVisibility(View.INVISIBLE);
+        }
+        if (rvSearch.isEnabled()) {
+            for (int i = 0; i < fetchedList.size(); i++) {
+                if (fetchedList.get(i).getDishName().toUpperCase().contains(s.toUpperCase()) || fetchedList.get(i).getDishDesc().toUpperCase().contains(s.toUpperCase())) {
+                    searchRes.add(fetchedList.get(i));
+                }
+            }
+            if (searchRes != null) {
+                SearchAdapter adapter = new SearchAdapter(getContext(), searchRes);
+                rvSearch.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                rvSearch.setAdapter(adapter);
+            }
+        }
     }
 
     public SearchFragment() {
