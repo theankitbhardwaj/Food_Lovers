@@ -55,6 +55,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mAuth = FirebaseAuth.getInstance();
+        preferenceConfig = new SharedPreferenceConfig(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         bt_signIn = findViewById(R.id.bt_signup_signup);
@@ -62,6 +63,7 @@ public class SignInActivity extends AppCompatActivity {
         password = findViewById(R.id.pass_editTxt_signup);
         email.addTextChangedListener(signInTextWatcher);
         password.addTextChangedListener(signInTextWatcher);
+        preferenceConfig.writeOnboardingStatus(true);
     }
 
     public void signIn(View view) {

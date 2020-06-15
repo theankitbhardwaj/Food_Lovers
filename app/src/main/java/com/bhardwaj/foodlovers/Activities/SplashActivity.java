@@ -37,7 +37,6 @@ public class SplashActivity extends AppCompatActivity {
         pLayout = findViewById(R.id.splashLayout);
         btnNext = findViewById(R.id.btnNext);
         btnFinish = findViewById(R.id.btnFinish);
-        preferenceConfig.writeOnboardingStatus(true);
         btnFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
