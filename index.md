@@ -1,37 +1,20 @@
-## Welcome to GitHub Pages
+## Welcome to Food Lovers
 
-You can use the [editor on GitHub](https://github.com/theankitbhardwaj/Food_Lovers/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+I developed this app to learn android development. I used various libraries available for android development in this project.
+I really liked developing this app and learnt many new things on my way to develop it.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Screenshots
+<img src="https://user-images.githubusercontent.com/49794220/89737220-048fd380-da8d-11ea-929c-1b222a472a26.png" width="90%"></img> <img src="https://user-images.githubusercontent.com/49794220/89737221-05c10080-da8d-11ea-82ab-d61f5a905dce.png" width="90%"></img> <img src="https://user-images.githubusercontent.com/49794220/89737222-06599700-da8d-11ea-8853-01e85e76412b.png" width="90%"></img> 
 
-### Markdown
+
+### Various libraries and tools used 
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- Firebase Auth. (for login via email)
+- Retrofit (for fetching data from web)
+- Picasso (for displaying images from web)
+- Various other built-in libraries in Android Studio
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/theankitbhardwaj/Food_Lovers/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Contact me
+- [Email me](mailto://iamankitbhardwaj@gmail.com)
+- [LinkedIn](https://linkedin.com/iamankitbhardwaj)
