@@ -42,7 +42,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttpDownloader(context));
-        builder.build().load(cartItems.get(position).getfImage()).fit().into(holder.fImage);
+        builder.build().load(cartItems.get(position).getfImage()).placeholder(R.drawable.load).fit().into(holder.fImage);
         holder.fName.setText(cartItems.get(position).getfName());
         holder.fDesc.setText(cartItems.get(position).getfDesc());
         count = cartItems.get(position).getfCount();

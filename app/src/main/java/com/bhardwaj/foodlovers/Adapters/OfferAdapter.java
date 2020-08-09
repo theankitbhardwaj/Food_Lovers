@@ -45,7 +45,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.ViewHolder> 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttpDownloader(context));
         final ImageView img = new ImageView(context);
-        builder.build().load(models.get(position).getDishImage()).into(img, new Callback() {
+        builder.build().load(models.get(position).getDishImage()).placeholder(R.drawable.load).into(img, new Callback() {
             @Override
             public void onSuccess() {
                 holder.imageView.setBackground(img.getDrawable());

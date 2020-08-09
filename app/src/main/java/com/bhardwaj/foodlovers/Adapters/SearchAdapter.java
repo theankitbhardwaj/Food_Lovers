@@ -42,7 +42,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
         if (holder.imageView != null && holder.textView_rating != null && holder.textView_price != null && holder.textView_name != null) {
             Picasso.Builder builder = new Picasso.Builder(context);
             builder.downloader(new OkHttpDownloader(context));
-            builder.build().load(food.get(position).getDishImage()).into(holder.imageView);
+            builder.build().load(food.get(position).getDishImage()).placeholder(R.drawable.load).into(holder.imageView);
             holder.imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

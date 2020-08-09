@@ -39,7 +39,7 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Vi
     public void onBindViewHolder(@NonNull RestaurantAdapter.ViewHolder holder, int position) {
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttpDownloader(context));
-        builder.build().load(models.get(position).getResImage()).resize(100, 100).into(holder.imageView);
+        builder.build().load(models.get(position).getResImage()).placeholder(R.drawable.load).resize(100, 100).into(holder.imageView);
         holder.textView.setText(models.get(position).getResName());
     }
 

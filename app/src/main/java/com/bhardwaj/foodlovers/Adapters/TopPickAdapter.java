@@ -41,7 +41,7 @@ public class TopPickAdapter extends RecyclerView.Adapter<TopPickAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttpDownloader(context));
-        builder.build().load(models.get(position).getDishImage()).into(holder.imageView);
+        builder.build().load(models.get(position).getDishImage()).placeholder(R.drawable.load).into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
