@@ -11,7 +11,7 @@ Follow him on [Instagram](https://www.instagram.com/anilbhardwaj.design/).
 
 ### Various libraries and tools used 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+I used following libraries and sdks : 
 - Firebase Auth. (for login via email)
 - Retrofit (for fetching data from web)
 - Picasso (for displaying images from web)
